@@ -1,4 +1,4 @@
-# Chrun
+# Customer Churn Prediction 
 Predict what kind of customers will stay and who will Churn
 
 
