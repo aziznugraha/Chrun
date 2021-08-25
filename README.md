@@ -71,8 +71,11 @@ group_tenure <- function(tenure){
 }
 
 df$tenure_group <- sapply(df$tenure,group_tenure)
+
 df$tenure_group <- as.factor(df$tenure_group)
+
 df$tenure <- NULL
+
 df
 
 #Change binomial value in senior citizen to yes or no
