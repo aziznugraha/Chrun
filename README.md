@@ -69,6 +69,7 @@ group_tenure <- function(tenure){
     return('> 4 year')
   }
 }
+
 df$tenure_group <- sapply(df$tenure,group_tenure)
 df$tenure_group <- as.factor(df$tenure_group)
 df$tenure <- NULL
