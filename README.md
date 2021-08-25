@@ -91,11 +91,15 @@ df2[sapply(df2, is.character)] <- lapply(df2[sapply(df2, is.character)], as.fact
 glimpse(df2)
 
 #Check Collinearity among numeric variables
+
 num_var <- data.frame(df2$MonthlyCharges, df2$TotalCharges)
+
 M <- cor(num_var)
+
 corrplot(M, method = "circle")
 
 #remove monthly charge
+
 df2$MonthlyCharges <- NULL
 
 #applied machine learning
@@ -104,9 +108,13 @@ df2$MonthlyCharges <- NULL
 
 set.seed(123)
 sample <- sample(c(TRUE, FALSE), nrow(df2), replace = T, prob =                   c(0.8,0.2))
+
 train <- df2[sample, ]
+
 test <- df2[!sample, ]
+
 dim(train)
+
 dim(test)
 
 #Logistic regression
@@ -117,10 +125,15 @@ summary(model1)
 #Check model accuracy with confussion matrix
 
 test$logit.churn.pred <- predict(model1, newdata = test, type = 'response')
+
 test$churn.pred <- ifelse(test$logit.churn.pred > 0.5, 1, 0)
+
 with(test, table(Churn, churn.pred))
+
 print(paste('recall = ',790/(790+148) ))
+
 print(paste('precision = ', 790/(790+86) ))
+
 print(paste('accuracy = ', (790+165)/(790+86+148+165)))
 
 #important variable
@@ -140,9 +153,13 @@ rpart.plot(trees)
 #Check model accuracy 
 
 pred <- predict(trees, test, type="class")
+
 confusionMatrix(pred, test$Churn)
+
 print(paste('recall = ', 825/(825+53)))
+
 print(paste('precision = ', 825/(825+199)))
+
 print(paste('accuracy = ', (825+114)/(825+199+53+114)))
 
 
