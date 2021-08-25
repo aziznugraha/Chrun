@@ -1,5 +1,7 @@
 # Chrun
 Predict what kind of customers will stay and who will Churn
+
+
 #import library
 library(dplyr)
 library(ggplot2)
